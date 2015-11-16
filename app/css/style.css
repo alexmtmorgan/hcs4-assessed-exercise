@@ -1,0 +1,26 @@
+#dropdown-menu-contents {
+    background-color: maroon;
+}
+
+#navigation-toggle {
+    position : absolute;
+    left : 160px;
+    background : rgba(3,159,244,.95);
+    color : white;
+    text-decoration : none;
+    padding : 20px;
+}
+
+div div img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.flip-horizontal {
+    -moz-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    transform: scaleX(-1);
+    -ms-filter: fliph; /*IE*/
+    filter: fliph; /*IE*/
+}
