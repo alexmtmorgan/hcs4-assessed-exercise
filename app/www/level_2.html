@@ -1,0 +1,41 @@
+<div class="container-fluid" ng-controller="LevelTwoCtrl as Two">
+    <div class="row">
+        <div class="col-xs-3 sidebar-toggle">
+            <a href="#" id="menu-toggle"
+               ng-click="toggleSidebar()">
+                <span style="font-size: 30pt" class="glyphicon glyphicon-menu-hamburger"></span>
+            </a>
+        </div>
+        <div class="col-xs-7 text-center">
+            <h1>Level 2</h1>
+        </div>
+        <div class="col-xs-2"></div>
+    </div>
+    <div class="row template-structure">
+        <div class="col-xs-3 wally-pic-box">
+            <img src="http://images.clipshrine.com/download/downloadsvg/man-explaining-presenting-13888-svg.svg"
+                 class="fit-image flip-horizontal">
+        </div>
+        <div class="col-xs-7 wally-speech-box">
+            <div ng-hide="Two.partOneCompleted()">
+                <h1>Welcome to Level 2</h1>
+                <p>Thanks {{Two.user_name}} for your help</p>
+            </div>
+            <div ng-show="Two.partOneCompleted()">
+                <h1>{{Two.geoff.name}}</h1>
+                <br>
+                <button class="btn btn-default" id="o"
+                        data-ng-disabled="Two.geoff.has_o"
+                        ng-click="Two.o()">o</button>
+                <button class="btn btn-default" id="ff"
+                        data-ng-disabled="!Two.geoff.has_o || Two.geoff.has_ff"
+                        ng-click="Two.ff()">ff</button>
+            </div>
+        </div>
+        <div class="col-xs-2 continue-button">
+            <button class="btn btn-default" id="continue"
+                    ng-click="Two.continue()"
+                    data-ng-disabled="Two.continueDisabled">Continue</button>
+        </div>
+    </div>
+</div>

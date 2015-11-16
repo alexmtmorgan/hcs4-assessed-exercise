@@ -40,7 +40,7 @@ div div div img {
 .wally-speech-box {
     float: none;
     display: table-cell;
-    vertical-align: middle;
+    vertical-align: bottom;
     border:3px solid black;
 }
 

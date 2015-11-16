@@ -4,7 +4,7 @@
 
 angular.module('app.controllers', [])
 
-    .controller('MainCtrl', function($scope) {
+    .controller('MainCtrl', function($scope, SharedService) {
 
         $scope.sidebar = {
             hide: "false"
@@ -30,8 +30,105 @@ angular.module('app.controllers', [])
             }
         ];
 
-        $scope.username = "";
+        $scope.typedUsername = function() {
+            return SharedService.getUsername() !== null &&
+                SharedService.getUsername() !== '';
+        };
+
+        $scope.getUsername = function() {
+            if(!$scope.typedUsername()) {
+                return 'Guest';
+            } else {
+                return SharedService.getUsername();
+            }
+        };
     })
+
+    .controller('InformationCtrl', function($scope, SharedService) {
+
+        this.user_name = $scope.getUsername();
+
+    })
+
+    .controller('IntroductionCtrl', function($scope, $state, SharedService) {
+
+        this.user_name = null;
+
+        this.continue = function() {
+            SharedService.setUsername(this.user_name);
+            $state.go('level1');
+        }
+
+    })
+
+    .controller('LevelOneCtrl', function($scope, $state, SharedService) {
+
+        this.user_name = SharedService.getUsername();
+
+        this.level = 1;
+
+        this.geoff = {
+            name: "G e _ _ _",
+            has_o: false,
+            has_ff: false
+        };
+
+        this.continueDisabled = false;
+
+        this.disableContinue = function() {
+            this.continueDisabled = true;
+        };
+
+        this.enableContinue = function() {
+            this.continueDisabled = false;
+        };
+
+        this.o = function() {
+            this.geoff.name = "G e o _ _";
+            this.geoff.has_o = true;
+        };
+
+        this.ff = function() {
+            this.geoff.name = "G e o f f";
+            this.geoff.has_ff = true;
+
+            this.enableContinue();
+        };
+
+        this.partOneCompleted = function() {
+            return $scope.levels[this.level].partOneCompleted;
+        };
+
+        this.continue = function() {
+            if(!this.partOneCompleted()) {
+                $scope.levels[this.level].partOneCompleted = true;
+                this.disableContinue();
+            } else if(this.partOneCompleted()) {
+                $state.go('level2');
+            }
+        }
+
+    })
+
+    .controller('LevelTwoCtrl', function($scope, $state, SharedService) {
+
+        this.user_name = SharedService.getUsername();
+
+        this.continue = function() {
+            $state.go('level3');
+        };
+    })
+
+    .controller('LevelThreeCtrl', function($scope, $state, SharedService) {
+
+        this.user_name = SharedService.getUsername();
+
+        this.continue = function() {
+            $state.go('');
+        };
+    })
+
+    //Unused controllers below
 
     .controller('DropdownCtrl', function() {
 
@@ -94,54 +191,4 @@ angular.module('app.controllers', [])
             $uibModalInstance.dismiss('cancel');
         };
     })
-
-    .controller('IntroductionCtrl', function($scope) {
-
-    })
-
-    .controller('LevelOneCtrl', function($scope) {
-
-        this.level = 1;
-
-        this.geoff = {
-            name: "G e _ _ _",
-            has_o: false,
-            has_ff: false
-        };
-
-        this.continueDisabled = false;
-
-        this.disableContinue = function() {
-            this.continueDisabled = true;
-        };
-
-        this.enableContinue = function() {
-            this.continueDisabled = false;
-        };
-
-        this.o = function() {
-            this.geoff.name = "G e o _ _";
-            this.geoff.has_o = true;
-        };
-
-        this.ff = function() {
-            this.geoff.name = "G e o f f";
-            this.geoff.has_ff = true;
-
-            this.enableContinue();
-        };
-
-        this.partOneCompleted = function() {
-            return $scope.levels[this.level].partOneCompleted;
-        };
-
-        this.continue = function() {
-            if(!this.partOneCompleted()) {
-                $scope.levels[this.level].partOneCompleted = true;
-                this.disableContinue();
-            } else {
-
-            }
-        }
-
-    });
+;

@@ -1,4 +1,4 @@
-<div class="container-fluid" ng-controller="LevelOneCtrl as OneCtrl">
+<div class="container-fluid" ng-controller="LevelOneCtrl as One">
     <div class="row">
         <div class="col-xs-3 sidebar-toggle">
             <a href="#" id="menu-toggle"
@@ -17,29 +17,29 @@
                  class="fit-image flip-horizontal">
         </div>
         <div class="col-xs-7 wally-speech-box">
-            <div ng-hide="OneCtrl.partOneCompleted()">
-                <h1>Welcome to Level 1</h1>
+            <div ng-hide="One.partOneCompleted()">
+                <h1>Thanks {{One.user_name}} for your help</h1>
                 <p>Welcome to Hoth, home of the nuclear missiles for planet Earth.
                     Geoff has hacked into the launch systems and has the power to launch
                     any of the rockets which risks billions of people’s lives!
                     To get into the system you need a password, Geoff has changed it,
                     though our intel tells us that his password security knowledge is terrible!</p>
             </div>
-            <div ng-show="OneCtrl.partOneCompleted()">
-                <h1>{{OneCtrl.geoff.name}}</h1>
+            <div ng-show="One.partOneCompleted()">
+                <h1>{{One.geoff.name}}</h1>
                 <br>
                 <button class="btn btn-default" id="o"
-                        data-ng-disabled="OneCtrl.geoff.has_o"
-                        ng-click="OneCtrl.o()">o</button>
+                        data-ng-disabled="One.geoff.has_o"
+                        ng-click="One.o()">o</button>
                 <button class="btn btn-default" id="ff"
-                        data-ng-disabled="!OneCtrl.geoff.has_o || OneCtrl.geoff.has_ff"
-                        ng-click="OneCtrl.ff()">ff</button>
+                        data-ng-disabled="!One.geoff.has_o || One.geoff.has_ff"
+                        ng-click="One.ff()">ff</button>
             </div>
         </div>
         <div class="col-xs-2 continue-button">
             <button class="btn btn-default" id="continue"
-            ng-click="OneCtrl.continue()"
-            data-ng-disabled="OneCtrl.continueDisabled">Continue</button>
+                    ng-click="One.continue()"
+                    data-ng-disabled="One.continueDisabled">Continue</button>
         </div>
     </div>
 </div>

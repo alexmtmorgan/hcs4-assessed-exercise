@@ -1,4 +1,4 @@
-<div class="container-fluid" ng-controller="IntroductionCtrl">
+<div class="container-fluid" ng-controller="IntroductionCtrl as Intro">
     <div class="row">
         <div class="col-xs-3 sidebar-toggle">
             <a href="#" id="menu-toggle"
@@ -18,15 +18,18 @@
         </div>
         <div class="col-xs-7 wally-speech-box">
             <h1>Hello, I'm Wally!</h1>
-            <p>Want to play a game? -Jigsaw</p>
-            <input type="text" ng-model="username" class="form-control">
+            <label for=username_field>Why don't you tell me your name?</label>
+            <input id="username_field" type="text" ng-model="Intro.user_name" class="form-control"
+                   placeholder="Insert name here...">
             <br>
-            <p ng-hide="username ===''">Nice to meet you
-                <span class="username">{{username}}</span>, let's get started!</p>
+            <p ng-hide="Intro.user_name">You haven't told me your name yet!</p>
+            <p ng-show="Intro.user_name">Nice to meet you
+                <span class="username">{{Intro.user_name}}</span>, let's get started!</p>
         </div>
         <div class="col-xs-2 continue-button">
-            <a href="#/level1" class="btn btn-default" id="continue" ng-hide="username === ''">Continue</a>
-
+            <button class="btn btn-default" id="continue"
+                    data-ng-disabled="!Intro.user_name"
+                    ng-click="Intro.continue()">Continue</button>
         </div>
     </div>
 </div>
