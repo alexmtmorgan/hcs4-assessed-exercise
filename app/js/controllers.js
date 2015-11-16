@@ -6,6 +6,8 @@ angular.module('app.controllers', [])
 
     .controller('MainCtrl', function($scope) {
 
+
+
         $scope.sidebar = {
             hide: "false"
         };

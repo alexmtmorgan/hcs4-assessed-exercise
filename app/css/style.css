@@ -24,3 +24,25 @@ div div img {
     -ms-filter: fliph; /*IE*/
     filter: fliph; /*IE*/
 }
+
+.template-structure {
+    display: table;
+    margin-bottom:20px;
+}
+.wally-pic-box {
+    float: none;
+    display: table-cell;
+    vertical-align: bottom;
+    height:550px;
+}
+.wally-speech-box {
+    float: none;
+    display: table-cell;
+    vertical-align: middle;
+    border:3px solid black;
+}
+.continue-button {
+    float: none;
+    display: table-cell;
+    vertical-align: bottom;
+}
