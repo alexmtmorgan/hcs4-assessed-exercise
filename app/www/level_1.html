@@ -1,27 +1,45 @@
-
-<div class="row" ng-controller="LevelCtrl">
-    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-        <a href="#" class="btn btn-default" id="menu-toggle"
-           ng-click="toggleSidebar()">Toggle Sidebar</a>
-        <a href="#/level1" class="btn btn-default" id="start">
-            Start!
-        </a>
-        <div ng-controller="NameInputCtrl">
-            <div ui-view></div>
-
-            <button type="button" class="btn btn-default" ng-click="open()">Open me!</button>
+<div class="container-fluid" ng-controller="LevelOneCtrl as OneCtrl">
+    <div class="row">
+        <div class="col-xs-3 sidebar-toggle">
+            <a href="#" id="menu-toggle"
+               ng-click="toggleSidebar()">
+                <span style="font-size: 30pt" class="glyphicon glyphicon-menu-hamburger"></span>
+            </a>
         </div>
+        <div class="col-xs-7 text-center">
+            <h1>Level 1</h1>
+        </div>
+        <div class="col-xs-2"></div>
     </div>
-    <div class="clearfix visible-xs-block visible-sm-block"></div>
-    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 speech-bubble text-center">
-        <h2>Hello, my name is Wally!</h2>
-        <a href="#" class="btn btn-default" id="name-form">
-            What's your name?
-        </a>
-    </div>
-    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
-        <img src="http://images.clipshrine.com/download/downloadsvg/man-explaining-presenting-13888-svg.svg"
-             class="fit-image">
-
+    <div class="row template-structure">
+        <div class="col-xs-3 wally-pic-box">
+            <img src="http://images.clipshrine.com/download/downloadsvg/man-explaining-presenting-13888-svg.svg"
+                 class="fit-image flip-horizontal">
+        </div>
+        <div class="col-xs-7 wally-speech-box">
+            <div ng-hide="OneCtrl.partOneCompleted()">
+                <h1>Welcome to Level 1</h1>
+                <p>Welcome to Hoth, home of the nuclear missiles for planet Earth.
+                    Geoff has hacked into the launch systems and has the power to launch
+                    any of the rockets which risks billions of people’s lives!
+                    To get into the system you need a password, Geoff has changed it,
+                    though our intel tells us that his password security knowledge is terrible!</p>
+            </div>
+            <div ng-show="OneCtrl.partOneCompleted()">
+                <h1>{{OneCtrl.geoff.name}}</h1>
+                <br>
+                <button class="btn btn-default" id="o"
+                        data-ng-disabled="OneCtrl.geoff.has_o"
+                        ng-click="OneCtrl.o()">o</button>
+                <button class="btn btn-default" id="ff"
+                        data-ng-disabled="!OneCtrl.geoff.has_o || OneCtrl.geoff.has_ff"
+                        ng-click="OneCtrl.ff()">ff</button>
+            </div>
+        </div>
+        <div class="col-xs-2 continue-button">
+            <button class="btn btn-default" id="continue"
+            ng-click="OneCtrl.continue()"
+            data-ng-disabled="OneCtrl.continueDisabled">Continue</button>
+        </div>
     </div>
 </div>

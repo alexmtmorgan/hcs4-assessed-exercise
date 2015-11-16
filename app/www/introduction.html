@@ -1,0 +1,32 @@
+<div class="container-fluid" ng-controller="IntroductionCtrl">
+    <div class="row">
+        <div class="col-xs-3 sidebar-toggle">
+            <a href="#" id="menu-toggle"
+               ng-click="toggleSidebar()">
+                <span style="font-size: 30pt" class="glyphicon glyphicon-menu-hamburger"></span>
+            </a>
+        </div>
+        <div class="col-xs-7 text-center">
+            <h1>Introduction</h1>
+        </div>
+        <div class="col-xs-2"></div>
+    </div>
+    <div class="row template-structure">
+        <div class="col-xs-3 wally-pic-box">
+            <img src="http://images.clipshrine.com/download/downloadsvg/man-explaining-presenting-13888-svg.svg"
+                 class="fit-image flip-horizontal">
+        </div>
+        <div class="col-xs-7 wally-speech-box">
+            <h1>Hello, I'm Wally!</h1>
+            <p>Want to play a game? -Jigsaw</p>
+            <input type="text" ng-model="username" class="form-control">
+            <br>
+            <p ng-hide="username ===''">Nice to meet you
+                <span class="username">{{username}}</span>, let's get started!</p>
+        </div>
+        <div class="col-xs-2 continue-button">
+            <a href="#/level1" class="btn btn-default" id="continue" ng-hide="username === ''">Continue</a>
+
+        </div>
+    </div>
+</div>

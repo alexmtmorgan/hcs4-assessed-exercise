@@ -6,8 +6,6 @@ angular.module('app.controllers', [])
 
     .controller('MainCtrl', function($scope) {
 
-
-
         $scope.sidebar = {
             hide: "false"
         };
@@ -18,7 +16,11 @@ angular.module('app.controllers', [])
 
         $scope.levels = [
             {
-                id: 1
+                id: 0
+            },
+            {
+                id: 1,
+                partOneCompleted: false
             },
             {
                 id: 2
@@ -28,9 +30,7 @@ angular.module('app.controllers', [])
             }
         ];
 
-        $scope.user = {
-            name: 'guest'
-        };
+        $scope.username = "";
     })
 
     .controller('DropdownCtrl', function() {
@@ -93,4 +93,55 @@ angular.module('app.controllers', [])
         $scope.cancel = function () {
             $uibModalInstance.dismiss('cancel');
         };
+    })
+
+    .controller('IntroductionCtrl', function($scope) {
+
+    })
+
+    .controller('LevelOneCtrl', function($scope) {
+
+        this.level = 1;
+
+        this.geoff = {
+            name: "G e _ _ _",
+            has_o: false,
+            has_ff: false
+        };
+
+        this.continueDisabled = false;
+
+        this.disableContinue = function() {
+            this.continueDisabled = true;
+        };
+
+        this.enableContinue = function() {
+            this.continueDisabled = false;
+        };
+
+        this.o = function() {
+            this.geoff.name = "G e o _ _";
+            this.geoff.has_o = true;
+        };
+
+        this.ff = function() {
+            this.geoff.name = "G e o f f";
+            this.geoff.has_ff = true;
+
+            this.enableContinue();
+        };
+
+        this.partOneCompleted = function() {
+            return $scope.levels[this.level].partOneCompleted;
+        };
+
+        this.continue = function() {
+            if(!this.partOneCompleted()) {
+                $scope.levels[this.level].partOneCompleted = true;
+                this.disableContinue();
+            } else {
+
+            }
+        }
+
     });
