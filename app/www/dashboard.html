@@ -1,12 +1,39 @@
-<div class="row">
-    <div class="col-lg-12">
-        <h1>My Name's Wally</h1>
-        <p>Welcome to Geoff and Wally's playground!</p>
-        <p></p>
-        <a href="#" class="btn btn-default" id="menu-toggle"
-           ng-click="toggleSidebar()">Toggle Sidebar</a>
-        <a href="#/level0" class="btn btn-default" id="start">
-            Start!
-        </a>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 sidebar-toggle">
+            <a href="#" id="menu-toggle"
+               ng-click="toggleSidebar()">
+                <span style="font-size: 30pt" class="glyphicon glyphicon-menu-hamburger"></span>
+            </a>
+        </div>
+        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text-center">
+            <h1>Dashboard</h1>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>Welcome!</h2>
+            <p>Help Wally out with this fun and interactive learning tool!</p>
+            <br>
+            <h4>What will you learn using this tool?</h4>
+            <div class="list-group">
+                <li class="list-group-item list-group-item-info">
+                    Learn what makes insecure passwords so <b>unsafe</b>!</li>
+                <li class="list-group-item list-group-item-info">
+                    Learn what <b>not</b> to do when coming up with passwords online</li>
+                <li class="list-group-item list-group-item-info">
+                    Learn how to come up with <b>safe</b> and <b>strong</b> passwords</li>
+            </div>
+            <br>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10"></div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-right">
+            <a href="#/level0" class="btn btn-default" id="start">
+                Start!
+            </a>
+        </div>
     </div>
 </div>

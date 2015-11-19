@@ -1,38 +1,66 @@
 <div class="container-fluid" ng-controller="LevelTwoCtrl as Two">
     <div class="row">
-        <div class="col-xs-3 sidebar-toggle">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 sidebar-toggle">
             <a href="#" id="menu-toggle"
                ng-click="toggleSidebar()">
                 <span style="font-size: 30pt" class="glyphicon glyphicon-menu-hamburger"></span>
             </a>
         </div>
-        <div class="col-xs-7 text-center">
-            <h1>Level 2</h1>
+        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text-center">
+            <div uib-collapse="hideLessons">
+                <div class="well well-sm">Never use your name in your password, that’s unsafe!</div>
+            </div>
         </div>
-        <div class="col-xs-2"></div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">
+            <button class="btn btn-danger"
+                    ng-click="hideLessons = !hideLessons">Lessons</button>
+        </div>
     </div>
     <div class="row template-structure">
-        <div class="col-xs-3 wally-pic-box">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 wally-pic-box">
             <img src="http://images.clipshrine.com/download/downloadsvg/man-explaining-presenting-13888-svg.svg"
                  class="fit-image flip-horizontal">
         </div>
-        <div class="col-xs-7 wally-speech-box">
-            <div ng-hide="Two.partOneCompleted()">
-                <h1>Welcome to Level 2</h1>
-                <p>Thanks {{Two.user_name}} for your help</p>
+        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 wally-speech-box padding">
+            <div>
+                <div>
+                    <h1>Welcome to Level 2</h1>
+                    <p>Gosh golly darn, great work <span class="username">{{Two.user_name}}</span>!
+                        Silly Geoff made his password his name, that made it super easy to guess.
+                        <span class="lesson">Never use your name in your password, that’s unsafe!</span></p>
+                </div>
+                <div ng-show="Two.partOneCompleted()">
+                    <p>Great job getting us back into the system, the rockets are now in safe hands.
+                        However, we need your help again! It appears Geoff has taken control of the nuclear
+                        power stations, can you find the password this time?</p>
+                </div>
+                <div ng-show="Two.partTwoCompleted()">
+                    <p>Geoff left some of his details in the rocket system, we found his Facebook profile,
+                        looks like he has a cat called Mittens and he was born on 00/00/2000.
+                        Can you use these details to crack the password?</p>
+                </div>
             </div>
-            <div ng-show="Two.partOneCompleted()">
-                <h1>{{Two.geoff.name}}</h1>
+            <div ng-show="Two.partTwoCompleted()">
+                <h1>{{Two.geoff.password}}</h1>
                 <br>
-                <button class="btn btn-default" id="o"
-                        data-ng-disabled="Two.geoff.has_o"
-                        ng-click="Two.o()">o</button>
-                <button class="btn btn-default" id="ff"
-                        data-ng-disabled="!Two.geoff.has_o || Two.geoff.has_ff"
-                        ng-click="Two.ff()">ff</button>
+                <button class="btn btn-default" id="geoff"
+                        data-ng-disabled="Two.geoff.guessedGeoff"
+                        ng-click="Two.wrongGuess('Geoff')">Geoff</button>
+                <button class="btn btn-default" id="mittens"
+                        data-ng-disabled="Two.geoff.guessedMittens"
+                        ng-click="Two.guessMittens()">Mittens</button>
+                <button class="btn btn-default" id="aria"
+                        data-ng-disabled="Two.geoff.guessedAria"
+                        ng-click="Two.wrongGuess('Aria')">Aria</button>
+                <button class="btn btn-default" id="correctdate"
+                        data-ng-disabled="Two.geoff.guessedDate"
+                        ng-click="Two.guessDate()">01 / 01 / 2000</button>
+                <button class="btn btn-default" id="wrongdate"
+                        data-ng-disabled="Two.geoff.guessedWrongDate"
+                        ng-click="Two.wrongGuess('Date')">11 / 02 / 1950</button>
             </div>
         </div>
-        <div class="col-xs-2 continue-button">
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 continue-button">
             <button class="btn btn-default" id="continue"
                     ng-click="Two.continue()"
                     data-ng-disabled="Two.continueDisabled">Continue</button>

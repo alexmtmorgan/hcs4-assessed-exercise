@@ -1,22 +1,22 @@
 <div class="container-fluid" ng-controller="IntroductionCtrl as Intro">
     <div class="row">
-        <div class="col-xs-3 sidebar-toggle">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 sidebar-toggle">
             <a href="#" id="menu-toggle"
                ng-click="toggleSidebar()">
                 <span style="font-size: 30pt" class="glyphicon glyphicon-menu-hamburger"></span>
             </a>
         </div>
-        <div class="col-xs-7 text-center">
+        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text-center">
             <h1>Introduction</h1>
         </div>
-        <div class="col-xs-2"></div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
     </div>
     <div class="row template-structure">
-        <div class="col-xs-3 wally-pic-box">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 wally-pic-box">
             <img src="http://images.clipshrine.com/download/downloadsvg/man-explaining-presenting-13888-svg.svg"
                  class="fit-image flip-horizontal">
         </div>
-        <div class="col-xs-7 wally-speech-box">
+        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 wally-speech-box">
             <h1>Hello, I'm Wally!</h1>
             <label for=username_field>Why don't you tell me your name?</label>
             <input id="username_field" type="text" ng-model="Intro.user_name" class="form-control"
@@ -26,7 +26,7 @@
             <p ng-show="Intro.user_name">Nice to meet you
                 <span class="username">{{Intro.user_name}}</span>, let's get started!</p>
         </div>
-        <div class="col-xs-2 continue-button">
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 continue-button">
             <button class="btn btn-default" id="continue"
                     data-ng-disabled="!Intro.user_name"
                     ng-click="Intro.continue()">Continue</button>

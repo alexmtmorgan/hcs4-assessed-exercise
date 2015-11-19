@@ -58,3 +58,15 @@ div div div img {
 .sidebar-toggle {
     text-align: left;
 }
+
+.padding {
+    padding: 10px;
+}
+
+.lesson {
+    color: #3498db;
+}
+
+.a[data-ng-disabled] {
+    pointer-events: none;
+}

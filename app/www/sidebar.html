@@ -13,7 +13,7 @@
                ng-disabled="">Levels <span class="caret"></span></a>
             <ul id="dropdown-menu-contents" class="dropdown-menu" role="menu" aria-labelledby="drop-a">
                 <li ng-repeat="level in levels" role="menuitem">
-                    <a href="#/level{{level.id}}">Level {{level.id}}</a>
+                    <a data-ng-disabled="completedLevels[level.id]" href="#/level{{level.id}}">Level {{level.id}}</a>
                 </li>
             </ul>
         </li>
