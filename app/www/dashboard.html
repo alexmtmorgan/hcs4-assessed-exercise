@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 sidebar-toggle">
-            <a href="#" id="menu-toggle"
+            <a href="#/dashboard" id="menu-toggle"
                ng-click="toggleSidebar()">
                 <span style="font-size: 30pt" class="glyphicon glyphicon-menu-hamburger"></span>
             </a>
@@ -17,21 +17,24 @@
             <p>Help Wally out with this fun and interactive learning tool!</p>
             <br>
             <h4>What will you learn using this tool?</h4>
-            <div class="list-group">
+            <ul class="list-group">
                 <li class="list-group-item list-group-item-info">
-                    Learn what makes insecure passwords so <b>unsafe</b>!</li>
+                    Learn what makes insecure passwords so
+                    <span class="emphasise">unsafe</span>!</li>
                 <li class="list-group-item list-group-item-info">
-                    Learn what <b>not</b> to do when coming up with passwords online</li>
+                    Learn what <span class="emphasise">not</span> to do when coming up with passwords
+                    <span class="emphasise">online</span></li>
                 <li class="list-group-item list-group-item-info">
-                    Learn how to come up with <b>safe</b> and <b>strong</b> passwords</li>
-            </div>
+                    Learn how to come up with <span class="emphasise">safe</span> and
+                    <span class="emphasise">strong</span> passwords</li>
+            </ul>
             <br>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10"></div>
         <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-right">
-            <a href="#/level0" class="btn btn-default" id="start">
+            <a href="#/level0" class="btn btn-default right-buttons" id="start">
                 Start!
             </a>
         </div>

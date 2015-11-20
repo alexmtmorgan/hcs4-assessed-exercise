@@ -1,7 +1,7 @@
 <div class="container-fluid" ng-controller="LevelTwoCtrl as Two">
     <div class="row">
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 sidebar-toggle">
-            <a href="#" id="menu-toggle"
+            <a href="#/level2" id="menu-toggle"
                ng-click="toggleSidebar()">
                 <span style="font-size: 30pt" class="glyphicon glyphicon-menu-hamburger"></span>
             </a>
@@ -11,8 +11,8 @@
                 <div class="well well-sm">Never use your name in your password, that’s unsafe!</div>
             </div>
         </div>
-        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">
-            <button class="btn btn-danger"
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 right-buttons">
+            <button id="lessons" class="btn btn-danger"
                     ng-click="hideLessons = !hideLessons">Lessons</button>
         </div>
     </div>
@@ -60,7 +60,7 @@
                         ng-click="Two.wrongGuess('Date')">11 / 02 / 1950</button>
             </div>
         </div>
-        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 continue-button">
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 right-buttons">
             <button class="btn btn-default" id="continue"
                     ng-click="Two.continue()"
                     data-ng-disabled="Two.continueDisabled">Continue</button>

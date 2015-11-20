@@ -44,7 +44,7 @@ div div div img {
     border:3px solid black;
 }
 
-.continue-button {
+.right-buttons {
     float: none;
     display: table-cell;
     vertical-align: bottom;
@@ -69,4 +69,13 @@ div div div img {
 
 .a[data-ng-disabled] {
     pointer-events: none;
+}
+
+.emphasise {
+    font-weight: bold;
+    color: navy;
+}
+
+.list-group-item {
+    color: ghostwhite;
 }

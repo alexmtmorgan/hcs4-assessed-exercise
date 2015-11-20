@@ -1,7 +1,7 @@
 <div class="container-fluid" ng-controller="LevelOneCtrl as One">
     <div class="row">
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 sidebar-toggle">
-            <a href="#" id="menu-toggle"
+            <a href="#/level1" id="menu-toggle"
                ng-click="toggleSidebar()">
                 <span style="font-size: 30pt" class="glyphicon glyphicon-menu-hamburger"></span>
             </a>
@@ -11,8 +11,8 @@
                 <div class="well well-sm">You haven't learned a lesson yet!</div>
             </div>
         </div>
-        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">
-            <button class="btn btn-danger"
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 right-buttons">
+            <button id="lessons" class="btn btn-danger"
                     ng-click="hideLessons = !hideLessons">Lessons</button>
         </div>
     </div>
@@ -34,7 +34,12 @@
                 <h3>What do you think the password could be?</h3>
                 <h4>Try and guess the password below: </h4>
                 <br>
-                <h1>{{One.geoff.name}}</h1>
+                <h1>{{One.geoff.name}}
+                    <span ng-show="One.continueDisabled"
+                         class="glyphicon glyphicon-lock"></span>
+                    <span ng-show="!One.continueDisabled"
+                         class="glyphicon glyphicon-unlock">text</span>
+                </h1>
                 <br>
                 <button class="btn btn-default" id="o"
                         data-ng-disabled="One.geoff.has_o"
@@ -46,7 +51,7 @@
             </div>
 
         </div>
-        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 continue-button">
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 right-buttons">
             <button class="btn btn-info" id="tip"
                     ng-click="One.tip()"
                     ng-show="One.partOneCompleted()">Tip</button>
