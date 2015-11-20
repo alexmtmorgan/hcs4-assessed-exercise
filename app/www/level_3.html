@@ -1,0 +1,90 @@
+<div class="container-fluid" ng-controller="LevelThreeCtrl as Three">
+    <div class="row">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 sidebar-toggle">
+            <a href="#/level3" id="menu-toggle"
+               ng-click="toggleSidebar()">
+                <span style="font-size: 30pt" class="glyphicon glyphicon-menu-hamburger"></span>
+            </a>
+        </div>
+        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text-center">
+            <div uib-collapse="hideLessons">
+                <div class="well well-sm">Never use your name in your password, that’s unsafe</div>
+                <div class="well well-sm">Don't use information in your passwords that can be found online</div>
+            </div>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 right-buttons">
+            <button id="lessons" class="btn btn-danger fa fa-info-circle"
+                    ng-click="hideLessons = !hideLessons"> Lessons</button>
+        </div>
+    </div>
+    <div class="row template-structure">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 wally-pic-box">
+            <img src="http://images.clipshrine.com/download/downloadsvg/man-explaining-presenting-13888-svg.svg"
+                 class="fit-image flip-horizontal">
+        </div>
+        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 wally-speech-box padding">
+            <div>
+                <div>
+                    <h1>Welcome to Level 3</h1>
+                    <p>Jeepers, you did it again! What would we do without you {{Three.user_name}}?! It looks like the
+                        nuclear system is under control,
+                        <span class="lesson">Geoff should learn not to use information that can be
+                        found out about him online in his passwords</span>.</p>
+                </div>
+                <div ng-show="Three.partOneCompleted()">
+                    <p>Oh wait! Geoff’s at it again, we’re seeing a malfunction in the international space
+                        station! The password to access control has been changed, we need your help to
+                        save the astronauts! </p>
+                </div>
+                <div ng-show="Three.partTwoCompleted()">
+                    <p>We ran an algorithm on the system and it looks like Geoff replaced some of the letters
+                        in his name with numbers. Can you work out what he did?</p>
+                </div>
+            </div>
+            <div ng-show="Three.partTwoCompleted()">
+                <h1>{{Three.geoff.password}}
+                <span ng-show="Three.continueDisabled"
+                      class="fa fa-lock"></span>
+                    <span ng-show="!Three.continueDisabled"
+                          class="fa fa-unlock-alt"></span>
+                </h1>
+                <br>
+                <button class="btn btn-default" id="low_g"
+                        data-ng-disabled="Three.geoff.guessedg || !Three.continueDisabled"
+                        ng-click="Three.guessg()">g</button>
+                <button class="btn btn-default" id="upp_g"
+                        data-ng-disabled="Three.geoff.guessedG || !Three.continueDisabled"
+                        ng-click="Three.wrongGuess('G')">G</button>
+                <button class="btn btn-default" id="low_e"
+                        data-ng-disabled="Three.geoff.guessede || !Three.continueDisabled"
+                        ng-click="Three.wrongGuess('e')">e</button>
+                <button class="btn btn-default" id="upp_e"
+                        data-ng-disabled="Three.geoff.guessedE || !Three.continueDisabled"
+                        ng-click="Three.wrongGuess('E')">E</button>
+                <button class="btn btn-default" id="3"
+                        data-ng-disabled="Three.geoff.guessed3 || !Three.continueDisabled"
+                        ng-click="Three.guess3()">3</button>
+                <button class="btn btn-default" id="low_o"
+                        data-ng-disabled="Three.geoff.guessedo || !Three.continueDisabled"
+                        ng-click="Three.wrongGuess('o')">o</button>
+                <button class="btn btn-default" id="upp_o"
+                        data-ng-disabled="Three.geoff.guessedO || !Three.continueDisabled"
+                        ng-click="Three.wrongGuess('O')">O</button>
+                <button class="btn btn-default" id="0"
+                        data-ng-disabled="Three.geoff.guessed0 || !Three.continueDisabled"
+                        ng-click="Three.guess0()">0</button>
+                <button class="btn btn-default" id="low_f"
+                        data-ng-disabled="Three.geoff.guessedf || !Three.continueDisabled"
+                        ng-click="Three.guessf()">f</button>
+                <button class="btn btn-default" id="upp_f"
+                        data-ng-disabled="Three.geoff.guessedF || !Three.continueDisabled"
+                        ng-click="Three.guessF()">F</button>
+            </div>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 right-buttons">
+            <button class="btn btn-default" id="continue"
+                    ng-click="Three.continue()"
+                    data-ng-disabled="Three.continueDisabled">Continue</button>
+        </div>
+    </div>
+</div>

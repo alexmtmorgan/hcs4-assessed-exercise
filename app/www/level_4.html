@@ -1,0 +1,65 @@
+<div class="container-fluid" ng-controller="LevelFourCtrl as Four">
+    <div class="row">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 sidebar-toggle">
+            <a href="#/level4" id="menu-toggle"
+               ng-click="toggleSidebar()">
+                <span style="font-size: 30pt" class="glyphicon glyphicon-menu-hamburger"></span>
+            </a>
+        </div>
+        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text-center">
+            <div uib-collapse="hideLessons">
+                <div class="well well-sm">Never use your name in your password, that’s unsafe</div>
+                <div class="well well-sm">Don't use information in your passwords that can be found online</div>
+                <div class="well well-sm">Replacing letters with numbers makes passwords harder to guess</div>
+                <div class="well well-sm">Using a combination of <b>lowercase</b> and <b>uppercase</b> letters
+                    makes passwords a lot harder to guess</div>
+                <div class="well well-sm">You could even use special characters (like '&', '%' and '_') in your passwords
+                    to make them even harder to guess</div>
+            </div>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 right-buttons">
+            <button id="lessons" class="btn btn-danger fa fa-info-circle"
+                    ng-click="hideLessons = !hideLessons"> Lessons</button>
+        </div>
+    </div>
+    <div class="row template-structure">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 wally-pic-box">
+            <img src="http://images.clipshrine.com/download/downloadsvg/man-explaining-presenting-13888-svg.svg"
+                 class="fit-image flip-horizontal">
+        </div>
+        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 wally-speech-box padding">
+            <div>
+                <div>
+                    <h1>Welcome to Level 4</h1>
+                    <p>Jeepers, you did it again! What would we do without you {{Four.user_name}}?! It looks like the
+                        nuclear system is under control,
+                        <span class="lesson">Geoff should learn not to use information that can be
+                        found out about him online in his passwords</span>.</p>
+                </div>
+                <div ng-show="Four.partOneCompleted()">
+                    <p>Oh wait! Geoff’s at it again, we’re seeing a malfunction in the international space
+                        station! The password to access control has been changed, we need your help to
+                        save the astronauts! </p>
+                </div>
+                <div ng-show="Four.partTwoCompleted()">
+                    <p>We ran an algorithm on the system and it looks like Geoff replaced some of the letters
+                        in his name with numbers. Can you work out what he did?</p>
+                </div>
+            </div>
+            <div ng-show="Four.partTwoCompleted()">
+                <h1>{{Four.geoff.password}}
+                <span ng-show="Four.continueDisabled"
+                      class="fa fa-lock"></span>
+                    <span ng-show="!Four.continueDisabled"
+                          class="fa fa-unlock-alt"></span>
+                </h1>
+                <br>
+            </div>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 right-buttons">
+            <button class="btn btn-default" id="continue"
+                    ng-click="Four.continue()"
+                    data-ng-disabled="Four.continueDisabled">Continue</button>
+        </div>
+    </div>
+</div>

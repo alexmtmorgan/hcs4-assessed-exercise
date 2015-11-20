@@ -1,0 +1,63 @@
+<div class="container-fluid" ng-controller="LevelOneCtrl as One">
+    <div class="row">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 sidebar-toggle">
+            <a href="#/level1" id="menu-toggle"
+               ng-click="toggleSidebar()">
+                <span style="font-size: 30pt" class="glyphicon glyphicon-menu-hamburger"></span>
+            </a>
+        </div>
+        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text-center">
+            <div uib-collapse="hideLessons">
+                <div class="well well-sm">You haven't learned a lesson yet!</div>
+            </div>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 right-buttons">
+            <button id="lessons" class="btn btn-danger fa fa-info-circle"
+                    ng-click="hideLessons = !hideLessons"> Lessons</button>
+        </div>
+    </div>
+    <div class="row template-structure">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 wally-pic-box">
+            <img src="http://images.clipshrine.com/download/downloadsvg/person-explaining-while-waving-his-hand-13869-svg.svg"
+                 class="fit-image flip-horizontal">
+        </div>
+        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 wally-speech-box padding">
+            <div ng-hide="One.partOneCompleted()">
+                <h1>Thanks for your help, {{One.user_name}}</h1>
+                <p>Welcome to Hoth, home of the nuclear missiles for planet Earth.
+                    Geoff has hacked into the launch systems and has the power to launch
+                    any of the rockets which risks billions of people’s lives!
+                    To get into the system you need a password, Geoff has changed it,
+                    though our intel tells us that his password security knowledge is terrible!</p>
+            </div>
+            <div ng-show="One.partOneCompleted()">
+                <h3>What do you think the password could be?</h3>
+                <h4>Try and guess the password below: </h4>
+                <br>
+                <h1>{{One.geoff.name}}
+                    <span ng-show="One.continueDisabled"
+                         class="fa fa-lock"></span>
+                    <span ng-show="!One.continueDisabled"
+                         class="fa fa-unlock-alt"></span>
+                </h1>
+                <br>
+                <button class="btn btn-default" id="o"
+                        data-ng-disabled="One.geoff.has_o"
+                        ng-click="One.o()">o</button>
+                <button class="btn btn-default" id="ff"
+                        data-ng-disabled="!One.geoff.has_o || One.geoff.has_ff"
+                        ng-click="One.ff()">ff</button>
+                <br>
+            </div>
+
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 right-buttons">
+            <button class="btn btn-info" id="tip"
+                    ng-click="One.tip()"
+                    ng-show="One.partOneCompleted()">Tip</button>
+            <button class="btn btn-default" id="continue"
+                    ng-click="One.continue()"
+                    data-ng-disabled="One.continueDisabled">Continue</button>
+        </div>
+    </div>
+</div>

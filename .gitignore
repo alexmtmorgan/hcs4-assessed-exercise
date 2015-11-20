@@ -1,0 +1,13 @@
+# Specifies intentionally untracked files to ignore when using Git
+# http://git-scm.com/docs/gitignore
+
+# WebStorm (jetbrains) project files
+.idea
+
+# ignore bower added libraries...
+node_modules
+engine
+bower_components
+
+# temporary files
+*~
