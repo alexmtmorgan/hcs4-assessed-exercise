@@ -35,6 +35,11 @@ angular.module('app', ['ui.bootstrap', 'ui.router', 'ngRoute', 'app.controllers'
             .state('level3', {
                 url: '/level3',
                 templateUrl: 'app/www/level_3.html'
+            })
+
+            .state('level4', {
+                url: '/level4',
+                templateUrl: 'app/www/level_4.html'
             });
 
         // if none of the above states are matched, use this as the fallback

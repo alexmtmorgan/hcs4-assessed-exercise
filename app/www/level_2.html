@@ -12,8 +12,8 @@
             </div>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 right-buttons">
-            <button id="lessons" class="btn btn-danger"
-                    ng-click="hideLessons = !hideLessons">Lessons</button>
+            <button id="lessons" class="btn btn-danger fa fa-info-circle"
+                    ng-click="hideLessons = !hideLessons"> Lessons</button>
         </div>
     </div>
     <div class="row template-structure">
@@ -36,27 +36,32 @@
                 </div>
                 <div ng-show="Two.partTwoCompleted()">
                     <p>Geoff left some of his details in the rocket system, we found his Facebook profile,
-                        looks like he has a cat called Mittens and he was born on 00/00/2000.
+                        looks like he has a cat called Mittens and he was born on 01/01/2000.
                         Can you use these details to crack the password?</p>
                 </div>
             </div>
             <div ng-show="Two.partTwoCompleted()">
-                <h1>{{Two.geoff.password}}</h1>
+                <h1>{{Two.geoff.password}}
+                <span ng-show="Two.continueDisabled"
+                      class="fa fa-lock"></span>
+                    <span ng-show="!Two.continueDisabled"
+                          class="fa fa-unlock-alt"></span>
+                </h1>
                 <br>
                 <button class="btn btn-default" id="geoff"
-                        data-ng-disabled="Two.geoff.guessedGeoff"
+                        data-ng-disabled="Two.geoff.guessedGeoff || !Two.continueDisabled"
                         ng-click="Two.wrongGuess('Geoff')">Geoff</button>
                 <button class="btn btn-default" id="mittens"
-                        data-ng-disabled="Two.geoff.guessedMittens"
+                        data-ng-disabled="Two.geoff.guessedMittens || !Two.continueDisabled"
                         ng-click="Two.guessMittens()">Mittens</button>
                 <button class="btn btn-default" id="aria"
-                        data-ng-disabled="Two.geoff.guessedAria"
+                        data-ng-disabled="Two.geoff.guessedAria || !Two.continueDisabled"
                         ng-click="Two.wrongGuess('Aria')">Aria</button>
                 <button class="btn btn-default" id="correctdate"
-                        data-ng-disabled="Two.geoff.guessedDate"
+                        data-ng-disabled="Two.geoff.guessedDate || !Two.continueDisabled"
                         ng-click="Two.guessDate()">01 / 01 / 2000</button>
                 <button class="btn btn-default" id="wrongdate"
-                        data-ng-disabled="Two.geoff.guessedWrongDate"
+                        data-ng-disabled="Two.geoff.guessedWrongDate || !Two.continueDisabled"
                         ng-click="Two.wrongGuess('Date')">11 / 02 / 1950</button>
             </div>
         </div>

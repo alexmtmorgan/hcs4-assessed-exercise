@@ -1,7 +1,15 @@
 <div class="row" ng-controller="InformationCtrl as Info">
-    <div class="col text-center">
-        <h1>Thanks for playing, {{Info.user_name}}!</h1>
-        <a href="#" class="btn btn-default" id="menu-toggle"
-           ng-click="toggleSidebar()">Toggle Sidebar</a>
+    <div class="row">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 sidebar-toggle">
+            <a href="#/information" id="menu-toggle"
+               ng-click="toggleSidebar()">
+                <span style="font-size: 30pt" class="glyphicon glyphicon-menu-hamburger"></span>
+            </a>
+        </div>
+        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 text-center">
+            <h1>Information</h1>
+            <h2>Thanks for playing, {{Info.user_name}}!</h2>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 right-buttons"></div>
     </div>
 </div>

@@ -52,6 +52,14 @@ angular.module('app.controllers', [])
         $scope.hideLessons = true;
     })
 
+    .controller('DashboardCtrl', function($state) {
+
+        this.continue = function() {
+            $state.go('introduction');
+        };
+
+    })
+
     .controller('InformationCtrl', function($scope, SharedService) {
 
         this.user_name = $scope.getUsername();
@@ -329,9 +337,17 @@ angular.module('app.controllers', [])
 
             } else if(this.partOneCompleted() && this.partTwoCompleted()) {
                 SharedService.setLevelCompleted(3);
-                $state.go('information');
+                $state.go('level4');
             }
         };
+    })
+
+    .controller('LevelFourCtrl', function($scope, SharedService) {
+
+        this.user_name = SharedService.getUsername();
+        $scope.completedLevels = SharedService.getCompletedLevels();
+
+        this.level = 4;
     })
 
     //Unused controllers below
@@ -379,22 +395,4 @@ angular.module('app.controllers', [])
             $scope.animationsEnabled = !$scope.animationsEnabled;
         };
 
-    })
-
-    .controller('NameInputCtrl', function ($scope, $uibModalInstance) {
-
-        $scope.items = ['item1', 'item2', 'item3'];
-
-        $scope.selected = {
-            item: $scope.items[0]
-        };
-
-        $scope.ok = function () {
-            $uibModalInstance.close($scope.selected.item);
-        };
-
-        $scope.cancel = function () {
-            $uibModalInstance.dismiss('cancel');
-        };
-    })
-;
+    });

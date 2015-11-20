@@ -2,7 +2,9 @@
   "name": "hcs4-assessed-exercise",
   "homepage": "",
   "authors": [
-    "alexmtmorgan <alexmtmorgan@gmail.com>"
+    "alexmtmorgan <alexmtmorgan@gmail.com>",
+    "brownjd6 <jamestigerfish@yahoo.com>",
+    "rorybain <ror>"
   ],
   "description": "HCS4 Group Exercise",
   "main": "index.html",

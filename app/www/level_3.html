@@ -13,8 +13,8 @@
             </div>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 right-buttons">
-            <button id="lessons" class="btn btn-danger"
-                    ng-click="hideLessons = !hideLessons">Lessons</button>
+            <button id="lessons" class="btn btn-danger fa fa-info-circle"
+                    ng-click="hideLessons = !hideLessons"> Lessons</button>
         </div>
     </div>
     <div class="row template-structure">
@@ -42,37 +42,42 @@
                 </div>
             </div>
             <div ng-show="Three.partTwoCompleted()">
-                <h1>{{Three.geoff.password}}</h1>
+                <h1>{{Three.geoff.password}}
+                <span ng-show="Three.continueDisabled"
+                      class="fa fa-lock"></span>
+                    <span ng-show="!Three.continueDisabled"
+                          class="fa fa-unlock-alt"></span>
+                </h1>
                 <br>
                 <button class="btn btn-default" id="low_g"
-                        data-ng-disabled="Three.geoff.guessedg"
+                        data-ng-disabled="Three.geoff.guessedg || !Three.continueDisabled"
                         ng-click="Three.guessg()">g</button>
                 <button class="btn btn-default" id="upp_g"
-                        data-ng-disabled="Three.geoff.guessedG"
+                        data-ng-disabled="Three.geoff.guessedG || !Three.continueDisabled"
                         ng-click="Three.wrongGuess('G')">G</button>
                 <button class="btn btn-default" id="low_e"
-                        data-ng-disabled="Three.geoff.guessede"
+                        data-ng-disabled="Three.geoff.guessede || !Three.continueDisabled"
                         ng-click="Three.wrongGuess('e')">e</button>
                 <button class="btn btn-default" id="upp_e"
-                        data-ng-disabled="Three.geoff.guessedE"
+                        data-ng-disabled="Three.geoff.guessedE || !Three.continueDisabled"
                         ng-click="Three.wrongGuess('E')">E</button>
                 <button class="btn btn-default" id="3"
-                        data-ng-disabled="Three.geoff.guessed3"
+                        data-ng-disabled="Three.geoff.guessed3 || !Three.continueDisabled"
                         ng-click="Three.guess3()">3</button>
                 <button class="btn btn-default" id="low_o"
-                        data-ng-disabled="Three.geoff.guessedo"
+                        data-ng-disabled="Three.geoff.guessedo || !Three.continueDisabled"
                         ng-click="Three.wrongGuess('o')">o</button>
                 <button class="btn btn-default" id="upp_o"
-                        data-ng-disabled="Three.geoff.guessedO"
+                        data-ng-disabled="Three.geoff.guessedO || !Three.continueDisabled"
                         ng-click="Three.wrongGuess('O')">O</button>
                 <button class="btn btn-default" id="0"
-                        data-ng-disabled="Three.geoff.guessed0"
+                        data-ng-disabled="Three.geoff.guessed0 || !Three.continueDisabled"
                         ng-click="Three.guess0()">0</button>
                 <button class="btn btn-default" id="low_f"
-                        data-ng-disabled="Three.geoff.guessedf"
+                        data-ng-disabled="Three.geoff.guessedf || !Three.continueDisabled"
                         ng-click="Three.guessf()">f</button>
                 <button class="btn btn-default" id="upp_f"
-                        data-ng-disabled="Three.geoff.guessedF"
+                        data-ng-disabled="Three.geoff.guessedF || !Three.continueDisabled"
                         ng-click="Three.guessF()">F</button>
             </div>
         </div>

@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" ng-controller="DashboardCtrl as Dash">
     <div class="row">
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 sidebar-toggle">
             <a href="#/dashboard" id="menu-toggle"
@@ -33,10 +33,11 @@
     </div>
     <div class="row">
         <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10"></div>
-        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-right">
-            <a href="#/level0" class="btn btn-default right-buttons" id="start">
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 right-buttons">
+            <button id="start" class="btn btn-default"
+                    ng-click="Dash.continue()">
                 Start!
-            </a>
+            </button>
         </div>
     </div>
 </div>

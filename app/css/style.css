@@ -79,3 +79,15 @@ div div div img {
 .list-group-item {
     color: ghostwhite;
 }
+
+.fa {
+    margin-left: 10px;
+}
+
+.fa-lock {
+    color: crimson;
+}
+
+.fa-unlock-alt {
+    color: green;
+}
