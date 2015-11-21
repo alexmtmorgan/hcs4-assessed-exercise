@@ -4,7 +4,11 @@
   "authors": [
     "alexmtmorgan <alexmtmorgan@gmail.com>",
     "brownjd6 <jamestigerfish@yahoo.com>",
+<<<<<<< HEAD
     "rorybain <insert email here>"
+=======
+    "rorybain <ror>"
+>>>>>>> 18e4ba8d7bcb9f6945b3aa607cec2bc2cf2aaf88
   ],
   "description": "HCS4 Group Exercise",
   "main": "index.html",
