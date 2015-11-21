@@ -1,11 +1,7 @@
 # Specifies intentionally untracked files to ignore when using Git
 # http://git-scm.com/docs/gitignore
 
-<<<<<<< HEAD
-# Mac OS x
-=======
 # Mac OS x specific stuff
->>>>>>> 18e4ba8d7bcb9f6945b3aa607cec2bc2cf2aaf88
 .DS_Store
 
 # WebStorm (jetbrains) project files
