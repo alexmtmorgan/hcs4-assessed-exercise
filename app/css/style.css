@@ -94,3 +94,12 @@ div div div img {
 .bold {
     font-weight: bold;
 }
+
+.crimson {
+    color: crimson;
+}
+
+.glyphicon-menu-hamburger {
+    font-size: 30pt;
+    color: #0d1318;
+}
