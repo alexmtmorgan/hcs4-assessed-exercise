@@ -30,16 +30,68 @@
         <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 wally-speech-box padding">
             <div>
                 <div>
-                    <h1>Welcome to Level 4</h1>
-                    <p>Jeepers, you did it again! What would we do without you {{Four.user_name}}?! It looks like the
-                        nuclear system is under control,
-                        <span class="lesson">Geoff should learn not to use information that can be
-                        found out about him online in his passwords</span>.</p>
+                    <h2>Holy moly, <span class="username">{{Four.user_name}}</span>,
+                        that was fab-u-lous!</h2>
+                    <p>
+                        <span class="lesson">
+                            Geoff made it a lot harder to guess his password by using
+                            a combination of uppercase and lowercase characters, as well as numbers.
+                            If he'd wanted to make it even harder to guess, he should've used special characters like:
+                            '%', '&', '£', '_' and '@'
+                        </span>.
+                    </p>
+                    <p>
+                        We’ve finally regained control of everything thanks to you,
+                        <span class="username">{{Four.user_name}}</span>,
+                        but Geoff knows we haven’t changed the master password yet. Can you create a
+                        strong and safe password using the knowledge you’ve gained so far?
+                    </p>
                 </div>
                 <div ng-show="Four.partOneCompleted()">
-                    <p>Oh wait! Geoff’s at it again, we’re seeing a malfunction in the international space
-                        station! The password to access control has been changed, we need your help to
-                        save the astronauts! </p>
+                    <p>
+                        <span class="text-right">
+                        <span style="color: crimson">Do not type a password you have used before!</span>
+                    </span>
+                    </p>
+
+                    <form name="passwordForm" ng-submit="Four.submitPassword()">
+                        <label for=password_field>Password:</label>
+                        <input id="password_field" name="password_field"
+                               type="{{Four.inputType}}" required
+                               ng-minlength="8" ng-maxlength="20"
+                               ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*(_|[^\w]))/"
+                               ng-model="Four.password" class="form-control"
+                               placeholder="Type master password here..." />
+                        <span class="text-right bold"
+                              ng-show="passwordForm.password_field.$error.required &&
+                                        passwordForm.password_field.$dirty">Required</span>
+
+                        <br>
+
+                        <label for="password_confirm">Confirm password:</label>
+                        <input id="password_confirm" name="password_confirm"
+                               type="{{Four.inputType}}" required
+                               ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*(_|[^\w]))/"
+                               ng-model="Four.password_c" class="form-control"
+                               placeholder="Confirm master password here...">
+                        <span class="text-right bold"
+                              ng-show="passwordForm.password_confirm.$error.required &&
+                                        passwordForm.password_confirm.$dirty">Required</span>
+
+                        <br>
+
+                        <label for="checkbox">Show password</label>
+                        <input type="checkbox" id="checkbox"
+                               ng-click="Four.togglePassword()" />
+
+                        <br>
+
+                        <button type="submit" id="submit"
+                                class="btn btn-success"
+                                ng-disabled="!passwordForm.$valid ||
+                                Four.password !== Four.password_c">Submit</button>
+                    </form>
+
                 </div>
                 <div ng-show="Four.partTwoCompleted()">
                     <p>We ran an algorithm on the system and it looks like Geoff replaced some of the letters
@@ -57,9 +109,12 @@
             </div>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 right-buttons">
+            <button class="btn btn-info" id="tip"
+                    ng-click="Four.tip()"
+                    ng-show="Four.partOneCompleted()">Tip</button>
             <button class="btn btn-default" id="continue"
                     ng-click="Four.continue()"
-                    data-ng-disabled="Four.continueDisabled">Continue</button>
+                    data-ng-disabled="Four.continueDisabled">{{Four.buttonLabel}}</button>
         </div>
     </div>
 </div>

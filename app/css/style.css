@@ -26,7 +26,6 @@ div div div img {
 }
 
 .template-structure {
-    display: table;
     margin-bottom:20px;
 }
 
@@ -90,4 +89,8 @@ div div div img {
 
 .fa-unlock-alt {
     color: green;
+}
+
+.bold {
+    font-weight: bold;
 }

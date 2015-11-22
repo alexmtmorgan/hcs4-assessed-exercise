@@ -28,11 +28,18 @@ angular.module('app.controllers', [])
             {
                 id: 2,
                 partOneCompleted: false,
+                partTwoCompleted: false
+            },
+            {
+                id: 3,
+                partOneCompleted: false,
                 partTwoCompleted: false,
                 partThreeCompleted: false
             },
             {
-                id: 3
+                id: 4,
+                partOneCompleted: false,
+                partTwoCompleted: false
             }
         ];
 
@@ -208,6 +215,9 @@ angular.module('app.controllers', [])
         this.partTwoCompleted = function() {
             return $scope.levels[this.level].partTwoCompleted;
         };
+        this.partThreeCompleted = function() {
+            return $scope.levels[this.level].partThreeCompleted;
+        };
 
         this.continue = function() {
             if(!this.partOneCompleted()) {
@@ -217,7 +227,7 @@ angular.module('app.controllers', [])
                 $scope.levels[this.level].partTwoCompleted = true;
                 this.disableContinue();
 
-            } else if(this.partOneCompleted() && this.partTwoCompleted()) {
+            } else if(this.partOneCompleted() && this.partTwoCompleted() && this.partThreeCompleted()) {
                 SharedService.setLevelCompleted(2);
                 $state.go('level3');
             }
@@ -348,6 +358,47 @@ angular.module('app.controllers', [])
         $scope.completedLevels = SharedService.getCompletedLevels();
 
         this.level = 4;
+
+        this.buttonLabel = "Yes!";
+
+        this.password = null;
+        this.password_c = null;
+
+        this.inputType = 'password';
+
+        this.togglePassword = function() {
+            this.passwordCheckbox = !this.passwordCheckbox;
+
+            if(this.passwordCheckbox) {
+                this.inputType = 'text';
+            } else {
+                this.inputType = 'password';
+            }
+        };
+
+        this.submitPassword = function() {
+            console.log('submitted');
+        };
+
+        this.partOneCompleted = function() {
+            return $scope.levels[this.level].partOneCompleted;
+        };
+        this.partTwoCompleted = function() {
+            return $scope.levels[this.level].partTwoCompleted;
+        };
+
+        this.continue = function() {
+            if(!this.partOneCompleted()) {
+                $scope.levels[this.level].partOneCompleted = true;
+                this.buttonLabel = "Continue";
+
+            } else if(!this.partTwoCompleted()) {
+                $scope.levels[this.level].partTwoCompleted = true;
+
+            } else if(this.partOneCompleted() && this.partTwoCompleted()) {
+
+            }
+        };
     })
 
     //Unused controllers below
@@ -362,37 +413,6 @@ angular.module('app.controllers', [])
             $event.preventDefault();
             $event.stopPropagation();
             this.status.isopen = !this.status.isopen;
-        };
-
-    })
-
-    .controller('LevelCtrl', function($scope, $uibModal) {
-
-        $scope.items = ['item1', 'item2', 'item3'];
-
-        $scope.animationsEnabled = true;
-
-        $scope.open = function (size) {
-
-            var modalInstance = $uibModal.open({
-                animation: $scope.animationsEnabled,
-                templateUrl: 'app/www/nameInput.html',
-                controller: 'NameInputCtrl',
-                size: size,
-                resolve: {
-                    items: function () {
-                        return $scope.items;
-                    }
-                }
-            });
-
-            modalInstance.result.then(function (selectedItem) {
-                $scope.selected = selectedItem;
-            });
-        };
-
-        $scope.toggleAnimation = function () {
-            $scope.animationsEnabled = !$scope.animationsEnabled;
         };
 
     });
