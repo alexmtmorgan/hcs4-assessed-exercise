@@ -366,6 +366,16 @@ angular.module('app.controllers', [])
 
         this.inputType = 'password';
 
+        this.nameInPassword = function() {
+            if(this.user_name !== null && this.password !== null) {
+                return this.password.indexOf(this.user_name) > -1;
+
+            } else {
+                return false;
+
+            }
+        };
+
         this.togglePassword = function() {
             this.passwordCheckbox = !this.passwordCheckbox;
 
