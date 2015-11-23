@@ -55,14 +55,15 @@
                     </span>
                     </p>
 
-                    <form name="passwordForm" ng-submit="Four.submitPassword()">
+                    <form name="passwordForm" ng-submit="Four.submitPassword()" id="passwordForm">
                         <label for=password_field>Password:</label>
                         <input id="password_field" name="password_field"
                                type="{{Four.inputType}}" required
-                               ng-minlength="8" ng-maxlength="20"
-                               ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*(_|[^\w]))/"
                                ng-model="Four.password" class="form-control"
-                               placeholder="Type master password here..." />
+                               placeholder="Type master password here..."
+                               ng-change="Four.checkPattern(); Four.gotoAnchor()"/>
+                        <!--ng-minlength="8" ng-maxlength="20"-->
+                        <!--ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*(_|[^\w]))/"-->
 
                         <br>
 
@@ -108,15 +109,7 @@
                                close="closeAlert($index)">{{alert.msg}}</uib-alert>
                 </div>
             </div>
-            <div ng-show="Four.partTwoCompleted()">
-                <h1>{{Four.geoff.password}}
-                <span ng-show="Four.continueDisabled"
-                      class="fa fa-lock"></span>
-                    <span ng-show="!Four.continueDisabled"
-                          class="fa fa-unlock-alt"></span>
-                </h1>
-                <br>
-            </div>
+
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 right-buttons">
             <button class="btn btn-info" id="tip"

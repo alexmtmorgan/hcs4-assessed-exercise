@@ -39,6 +39,7 @@ div div div img {
 .wally-speech-box {
     float: none;
     display: table-cell;
+    background-color: white;
     vertical-align: bottom;
     border:3px solid black;
 }
@@ -102,4 +103,19 @@ div div div img {
 .glyphicon-menu-hamburger {
     font-size: 30pt;
     color: #0d1318;
+}
+
+#introduction {
+    padding: 5px;
+    background-image: url("https://github.com/alexmtmorgan/hcs4-assessed-exercise/blob/gh-pages/app/img/background.png?raw=true");
+    background-size: auto 500px;
+    background-repeat: repeat-x;
+}
+
+#level_1 {
+    padding: 5px;
+    background-image: url("https://github.com/alexmtmorgan/hcs4-assessed-exercise/blob/gh-pages/app/img/space.png?raw=true");
+    background-size: 100% 500px;
+    background-repeat: no-repeat;
+    background-color: #0d1318;
 }

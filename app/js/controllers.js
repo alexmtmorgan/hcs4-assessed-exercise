@@ -406,7 +406,20 @@ angular.module('app.controllers', [])
         };
     })
 
-    .controller('LevelFourCtrl', function($scope, SharedService) {
+    .controller('LevelFourCtrl', function($scope, SharedService, $anchorScroll, $location) {
+
+        this.gotoAnchor = function() {
+            var newHash = 'passwordForm';
+            if ($location.hash() !== newHash) {
+                // set the $location.hash to `newHash` and
+                // $anchorScroll will automatically scroll to it
+                $location.hash('passwordForm');
+            } else {
+                // call $anchorScroll() explicitly,
+                // since $location.hash hasn't changed
+                $anchorScroll();
+            }
+        };
 
         this.user_name = SharedService.getUsername();
         $scope.completedLevels = SharedService.getCompletedLevels();
@@ -420,12 +433,108 @@ angular.module('app.controllers', [])
 
         this.inputType = 'password';
 
+        this.checkPattern = function() {
+            if(this.password !== null || this.password !== undefined) {
+                this.checkLowerCase();
+
+                this.checkUpperCase();
+
+                this.checkDigit();
+
+                this.checkNonAlphaNumeric();
+            }
+        };
+
+        this.checkLowerCase = function() {
+            var num = 0;
+
+            if(this.password === null || this.password === undefined) {
+                this.alerts[num].type = "danger";
+                return;
+            }
+
+            if(this.password !== null && this.password !== undefined) {
+                var contains = this.password.match(/(.*([a-z]))/);
+            }
+
+            if(contains !== null) {
+                this.alerts[num].type = "success";
+            } else {
+                this.alerts[num].type = "danger";
+            }
+        };
+
+        this.checkUpperCase = function() {
+            var num = 1;
+
+            if(this.password === null || this.password === undefined) {
+                this.alerts[num].type = "danger";
+                return;
+            }
+            if(this.password !== null && this.password !== undefined) {
+                var contains = this.password.match(/(.*([A-Z]))/);
+            }
+
+            if(contains !== null) {
+                this.alerts[num].type = "success";
+            } else {
+                this.alerts[num].type = "danger";
+            }
+        };
+
+        this.checkDigit = function() {
+            var num = 2;
+
+            if(this.password === null || this.password === undefined) {
+                this.alerts[num].type = "danger";
+                return;
+            }
+            if(this.password !== null && this.password !== undefined) {
+                var contains = this.password.match(/(.*([0-9]))/);
+            }
+
+            if(contains !== null) {
+                this.alerts[num].type = "success";
+            } else {
+                this.alerts[num].type = "danger";
+            }
+        };
+
+        this.checkNonAlphaNumeric = function() {
+            var num = 3;
+
+            if(this.password === null || this.password === undefined) {
+                this.alerts[num].type = "danger";
+                return;
+            }
+
+            if(this.password !== null && this.password !== undefined) {
+                var contains = this.password.match(/(.*(_|[^\w]))/);
+            }
+
+            if(contains !== null) {
+                this.alerts[num].type = "success";
+            } else {
+                this.alerts[num].type = "danger";
+            }
+        };
+
         this.nameInPassword = function() {
             if(this.user_name !== null && this.password !== null) {
                 var passwordLower = this.password.toLowerCase();
                 var usernameLower = this.user_name.toLowerCase();
 
-                return passwordLower.indexOf(usernameLower) > -1;
+                var num = 4;
+
+                if(passwordLower.indexOf(usernameLower) > -1) {
+                    this.alerts[num].type = "danger";
+
+                    return true;
+                } else {
+                    this.alerts[num].type = "success";
+
+                    return false;
+                }
 
             } else {
                 return false;
