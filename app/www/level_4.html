@@ -15,8 +15,6 @@
                 <div class="well well-sm">Replacing letters with numbers makes passwords harder to guess</div>
                 <div class="well well-sm">Using a combination of <b>lowercase</b> and <b>uppercase</b> letters
                     makes passwords a lot harder to guess</div>
-                <div class="well well-sm">You could even use special characters (like '&', '%' and '_') in your passwords
-                    to make them even harder to guess</div>
             </div>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 right-buttons">
@@ -102,9 +100,12 @@
                     </form>
 
                 </div>
-                <div ng-show="Four.partTwoCompleted()">
-                    <p>We ran an algorithm on the system and it looks like Geoff replaced some of the letters
-                        in his name with numbers. Can you work out what he did?</p>
+
+                <br>
+
+                <div ng-show="Four.partOneCompleted()">
+                    <uib-alert ng-repeat="alert in Four.alerts" type="{{alert.type}}"
+                               close="closeAlert($index)">{{alert.msg}}</uib-alert>
                 </div>
             </div>
             <div ng-show="Four.partTwoCompleted()">

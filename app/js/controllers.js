@@ -33,8 +33,7 @@ angular.module('app.controllers', [])
             {
                 id: 3,
                 partOneCompleted: false,
-                partTwoCompleted: false,
-                partThreeCompleted: false
+                partTwoCompleted: false
             },
             {
                 id: 4,
@@ -134,6 +133,21 @@ angular.module('app.controllers', [])
                 this.disableContinue();
             } else if(this.partOneCompleted()) {
                 SharedService.setLevelCompleted(1);
+
+                this.geoff = {
+                    name: "G e _ _ _",
+                    has_o: false,
+                    has_ff: false
+                };
+
+                this.disableContinue();
+
+                $scope.levels[this.level] = {
+                    id: this.level,
+                    partOneCompleted: false,
+                    partTwoCompleted: false
+                };
+
                 $state.go('level2');
             }
         };
@@ -215,9 +229,6 @@ angular.module('app.controllers', [])
         this.partTwoCompleted = function() {
             return $scope.levels[this.level].partTwoCompleted;
         };
-        this.partThreeCompleted = function() {
-            return $scope.levels[this.level].partThreeCompleted;
-        };
 
         this.continue = function() {
             if(!this.partOneCompleted()) {
@@ -227,8 +238,26 @@ angular.module('app.controllers', [])
                 $scope.levels[this.level].partTwoCompleted = true;
                 this.disableContinue();
 
-            } else if(this.partOneCompleted() && this.partTwoCompleted() && this.partThreeCompleted()) {
+            } else if(this.partOneCompleted() && this.partTwoCompleted()) {
                 SharedService.setLevelCompleted(2);
+
+                this.geoff = {
+                    password: '_ _ _ _ _ _ _  _ _ / _ _ / _ _ _ _',
+                    guessedGeoff: 0,
+                    guessedMittens: false,
+                    guessedAria: false,
+                    guessedDate: false,
+                    guessedWrongDate: false
+                };
+
+                this.enableContinue();
+
+                $scope.levels[this.level] = {
+                    id: this.level,
+                    partOneCompleted: false,
+                    partTwoCompleted: false
+                };
+
                 $state.go('level3');
             }
         };
@@ -347,6 +376,31 @@ angular.module('app.controllers', [])
 
             } else if(this.partOneCompleted() && this.partTwoCompleted()) {
                 SharedService.setLevelCompleted(3);
+
+                this.geoff = {
+                    password: '_ _ _ _ _',
+                    guessedg: false,
+                    guessedG: false,
+                    guessede: false,
+                    guessedE: false,
+                    guessed3: false,
+                    guessedo: false,
+                    guessedO: false,
+                    guessed0: false,
+                    guessedf: false,
+                    guessedF: false
+                };
+
+                this.numFilled = 0;
+
+                this.enableContinue();
+
+                $scope.levels[this.level] = {
+                    id: this.level,
+                    partOneCompleted: false,
+                    partTwoCompleted: false
+                };
+
                 $state.go('level4');
             }
         };
@@ -368,7 +422,10 @@ angular.module('app.controllers', [])
 
         this.nameInPassword = function() {
             if(this.user_name !== null && this.password !== null) {
-                return this.password.indexOf(this.user_name) > -1;
+                var passwordLower = this.password.toLowerCase();
+                var usernameLower = this.user_name.toLowerCase();
+
+                return passwordLower.indexOf(usernameLower) > -1;
 
             } else {
                 return false;
@@ -408,6 +465,33 @@ angular.module('app.controllers', [])
             } else if(this.partOneCompleted() && this.partTwoCompleted()) {
 
             }
+        };
+
+        this.alerts = [
+            {
+                type: "danger",
+                msg: "Your password must contain at least one small letter (like 'a', 'b' or 'z')"
+            },
+            {
+                type: "danger",
+                msg: "Your password must contain at least one capital letter (like 'A', 'B' or 'Z')"
+            },
+            {
+                type: "danger",
+                msg: "Your password must contain at least one number (like '0', '1' or '9')"
+            },
+            {
+                type: "danger",
+                msg: "Your password must contain at least one special character (like '_', '%' or '@')"
+            },
+            {
+                type: "success",
+                msg: "You mustn't use your name in your password"
+            }
+        ];
+
+        this.updateAlert = function() {
+
         };
     })
 
