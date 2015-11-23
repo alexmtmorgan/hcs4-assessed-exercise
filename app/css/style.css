@@ -119,3 +119,35 @@ div div div img {
     background-repeat: no-repeat;
     background-color: #0d1318;
 }
+
+#level_2 {
+    padding: 5px;
+    background-image: url("");
+    background-size: 100% 500px;
+    background-repeat: no-repeat;
+    background-color: #0d1318;
+}
+
+#level_3 {
+     padding: 5px;
+     background-image: url("");
+     background-size: 100% 500px;
+     background-repeat: no-repeat;
+     background-color: #0d1318;
+ }
+
+#level_4 {
+      padding: 5px;
+      background-image: url("");
+      background-size: 100% 500px;
+      background-repeat: no-repeat;
+      background-color: #0d1318;
+  }
+
+#dashboard {
+    padding: 5px;
+    background-image: url("");
+    background-size: 100% 500px;
+    background-repeat: no-repeat;
+    background-color: #0d1318;
+}

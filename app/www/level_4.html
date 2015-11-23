@@ -1,4 +1,4 @@
-<div class="container-fluid" ng-controller="LevelFourCtrl as Four">
+<div class="container-fluid" ng-controller="LevelFourCtrl as Four" id="level_4">
     <div class="row">
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 sidebar-toggle">
             <a href="#/level4" id="menu-toggle"
@@ -59,9 +59,10 @@
                         <label for=password_field>Password:</label>
                         <input id="password_field" name="password_field"
                                type="{{Four.inputType}}" required
+                               ng-focus="Four.gotoAnchor()"
                                ng-model="Four.password" class="form-control"
                                placeholder="Type master password here..."
-                               ng-change="Four.checkPattern(); Four.gotoAnchor()"/>
+                               ng-change="Four.checkPattern()"/>
                         <!--ng-minlength="8" ng-maxlength="20"-->
                         <!--ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*(_|[^\w]))/"-->
 
@@ -70,6 +71,7 @@
                         <label for="password_confirm">Confirm password:</label>
                         <input id="password_confirm" name="password_confirm"
                                type="{{Four.inputType}}" required
+                               ng-focus="Four.gotoAnchor()"
                                ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*(_|[^\w]))/"
                                ng-model="Four.password_c" class="form-control"
                                placeholder="Confirm master password here...">
