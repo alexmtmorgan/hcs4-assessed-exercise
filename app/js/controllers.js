@@ -451,6 +451,56 @@ angular.module('app.controllers', [])
 
         this.inputType = 'password';
 
+        this.passwordLength = function() {
+            if(this.password != null) {
+                return this.password.length;
+            } else {
+                return 0;
+            }
+        };
+
+        this.possibleCharacters = 0;
+
+        this.secondsToString = function() {
+
+            var totalMilliseconds = Math.pow(this.possibleCharacters,this.passwordLength()) / 1000000;
+            var days = 365, hours = 24, minutes = 60, seconds = 60, milliseconds = 1000;
+
+            var millisecondsInYear = days * hours * minutes * seconds * milliseconds,
+                millisecondsInDay = hours * minutes * seconds * milliseconds,
+                millisecondsInHour = minutes * seconds * milliseconds,
+                millisecondsInMinute = seconds * milliseconds,
+                millisecondsInSecond = milliseconds;
+
+            var numyears = Math.floor(totalMilliseconds / millisecondsInYear);
+            var numdays = Math.floor((totalMilliseconds % millisecondsInYear) / millisecondsInDay);
+            var numhours = Math.floor(((totalMilliseconds % millisecondsInYear) % millisecondsInDay) / millisecondsInHour);
+            var numminutes = Math.floor((((totalMilliseconds % millisecondsInYear) % millisecondsInDay) % millisecondsInHour) / millisecondsInMinute);
+            var numseconds = Math.floor(((((totalMilliseconds % millisecondsInYear) % millisecondsInDay) % millisecondsInHour) % millisecondsInMinute) / millisecondsInSecond);
+            var nummilliseconds = (((((totalMilliseconds % millisecondsInYear) % millisecondsInDay) % millisecondsInHour) % millisecondsInMinute) % millisecondsInSecond);
+
+            return "years: " + numyears +
+                ", days: " + numdays +
+                ", hours: " + numhours +
+                ", minutes: " + numminutes +
+                ", seconds: " + numseconds +
+                ", milliseconds: " + nummilliseconds;
+        };
+
+        this.timeToCrack = function() {
+            if(this.passwordLength() === 0 || this.possibleCharacters === 0) {
+                return 0;
+            }
+            return this.secondsToString();
+        };
+
+        this.charChecked = {
+            lower: false,
+            upper: false,
+            num: false,
+            special: false
+        };
+
         this.checkPattern = function() {
             if(this.password !== null || this.password !== undefined) {
                 this.checkLowerCase();
@@ -468,6 +518,10 @@ angular.module('app.controllers', [])
 
             if(this.password === null || this.password === undefined) {
                 this.alerts[num].type = "danger";
+                if(this.charChecked.lower === true) {
+                    this.charChecked.lower = false;
+                    this.possibleCharacters -= 26;
+                }
                 return;
             }
 
@@ -477,8 +531,16 @@ angular.module('app.controllers', [])
 
             if(contains !== null) {
                 this.alerts[num].type = "success";
+                if(this.charChecked.lower === false) {
+                    this.charChecked.lower = true;
+                    this.possibleCharacters += 26;
+                }
             } else {
                 this.alerts[num].type = "danger";
+                if(this.charChecked.lower === true) {
+                    this.charChecked.lower = false;
+                    this.possibleCharacters -= 26;
+                }
             }
         };
 
@@ -487,6 +549,10 @@ angular.module('app.controllers', [])
 
             if(this.password === null || this.password === undefined) {
                 this.alerts[num].type = "danger";
+                if(this.charChecked.upper === true) {
+                    this.charChecked.upper = false;
+                    this.possibleCharacters -= 26;
+                }
                 return;
             }
             if(this.password !== null && this.password !== undefined) {
@@ -495,8 +561,16 @@ angular.module('app.controllers', [])
 
             if(contains !== null) {
                 this.alerts[num].type = "success";
+                if(this.charChecked.upper === false) {
+                    this.charChecked.upper = true;
+                    this.possibleCharacters += 26;
+                }
             } else {
                 this.alerts[num].type = "danger";
+                if(this.charChecked.upper === true) {
+                    this.charChecked.upper = false;
+                    this.possibleCharacters -= 26;
+                }
             }
         };
 
@@ -505,6 +579,10 @@ angular.module('app.controllers', [])
 
             if(this.password === null || this.password === undefined) {
                 this.alerts[num].type = "danger";
+                if(this.charChecked.num === true) {
+                    this.charChecked.num = false;
+                    this.possibleCharacters -= 10;
+                }
                 return;
             }
             if(this.password !== null && this.password !== undefined) {
@@ -513,8 +591,16 @@ angular.module('app.controllers', [])
 
             if(contains !== null) {
                 this.alerts[num].type = "success";
+                if(this.charChecked.num === false) {
+                    this.charChecked.num = true;
+                    this.possibleCharacters += 10;
+                }
             } else {
                 this.alerts[num].type = "danger";
+                if(this.charChecked.num === true) {
+                    this.charChecked.num = false;
+                    this.possibleCharacters -= 10;
+                }
             }
         };
 
@@ -523,6 +609,10 @@ angular.module('app.controllers', [])
 
             if(this.password === null || this.password === undefined) {
                 this.alerts[num].type = "danger";
+                if(this.charChecked.special === true) {
+                    this.charChecked.special = false;
+                    this.possibleCharacters -= 33;
+                }
                 return;
             }
 
@@ -532,8 +622,16 @@ angular.module('app.controllers', [])
 
             if(contains !== null) {
                 this.alerts[num].type = "success";
+                if(this.charChecked.special === false) {
+                    this.charChecked.special = true;
+                    this.possibleCharacters += 33;
+                }
             } else {
                 this.alerts[num].type = "danger";
+                if(this.charChecked.special === true) {
+                    this.charChecked.special = false;
+                    this.possibleCharacters -= 33;
+                }
             }
         };
 
