@@ -33,7 +33,7 @@ div div div img {
     float: none;
     display: table-cell;
     vertical-align: bottom;
-    height:450px;
+    height:inherit;
 }
 
 .wally-speech-box {

@@ -166,6 +166,24 @@ angular.module('app.controllers', [])
 
         this.level = 2;
 
+        this.initial = function() {
+            this.geoff = {
+                password: '_ _ _ _ _ _ _  _ _ / _ _ / _ _ _ _',
+                guessedGeoff: 0,
+                guessedMittens: false,
+                guessedAria: false,
+                guessedDate: false,
+                guessedWrongDate: false
+            };
+
+            this.continueDisabled = false;
+
+            $scope.levels[this.level].partOneCompleted = false;
+            $scope.levels[this.level].partTwoCompleted = false;
+        };
+
+        this.initial();
+
         this.geoff = {
             password: '_ _ _ _ _ _ _  _ _ / _ _ / _ _ _ _',
             guessedGeoff: 0,
