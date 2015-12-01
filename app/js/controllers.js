@@ -8,6 +8,10 @@ angular.module('app.controllers', [])
 
         $scope.completedLevels = SharedService.getCompletedLevels();
 
+        String.prototype.replaceAt = function(index, character) {
+            return this.substr(0, index) + character + this.substr(index+character.length);
+        };
+
         $scope.sidebar = {
             hide: "false"
         };
@@ -38,7 +42,8 @@ angular.module('app.controllers', [])
             {
                 id: 4,
                 partOneCompleted: false,
-                partTwoCompleted: false
+                partTwoCompleted: false,
+                partThreeCompleted: false
             }
         ];
 
@@ -312,10 +317,6 @@ angular.module('app.controllers', [])
             this.continueDisabled = false;
         };
 
-        String.prototype.replaceAt = function(index, character) {
-            return this.substr(0, index) + character + this.substr(index+character.length);
-        };
-
         this.wrongGuess = function(guess) {
             if(guess === 'G') {
                 this.geoff.guessedG = true;
@@ -424,7 +425,7 @@ angular.module('app.controllers', [])
         };
     })
 
-    .controller('LevelFourCtrl', function($scope, SharedService, $anchorScroll, $location) {
+    .controller('LevelFourCtrl', function($scope, SharedService, $anchorScroll, $location, $state) {
 
         this.gotoAnchor = function() {
             var newHash = 'passwordForm';
@@ -452,9 +453,21 @@ angular.module('app.controllers', [])
         this.inputType = 'password';
 
         this.passwordLength = function() {
+            var num = 4;
+
             if(this.password != null) {
+                if(this.password.length >= 8) {
+                    this.alerts[num].type = "success";
+                    this.alerts[num].icon = "fa-check";
+                } else {
+                    this.alerts[num].type = "danger";
+                    this.alerts[num].icon = "fa-times";
+                }
+
                 return this.password.length;
             } else {
+                this.alerts[num].type = "danger";
+                this.alerts[num].icon = "fa-times";
                 return 0;
             }
         };
@@ -462,6 +475,16 @@ angular.module('app.controllers', [])
         this.possibleCharacters = 0;
 
         this.secondsToString = function() {
+
+
+            if(this.passwordLength() === 0 || this.possibleCharacters === 0) {
+                return 0 + " years, " +
+                    0 + " days, " +
+                    0 + " hours, " +
+                    0 + " minutes, " +
+                    0 + " seconds, " +
+                    0 + " milliseconds";
+            }
 
             var totalMilliseconds = Math.pow(this.possibleCharacters,this.passwordLength()) / 1000000;
             var days = 365, hours = 24, minutes = 60, seconds = 60, milliseconds = 1000;
@@ -479,18 +502,15 @@ angular.module('app.controllers', [])
             var numseconds = Math.floor(((((totalMilliseconds % millisecondsInYear) % millisecondsInDay) % millisecondsInHour) % millisecondsInMinute) / millisecondsInSecond);
             var nummilliseconds = (((((totalMilliseconds % millisecondsInYear) % millisecondsInDay) % millisecondsInHour) % millisecondsInMinute) % millisecondsInSecond);
 
-            return "years: " + numyears +
-                ", days: " + numdays +
-                ", hours: " + numhours +
-                ", minutes: " + numminutes +
-                ", seconds: " + numseconds +
-                ", milliseconds: " + nummilliseconds;
+            return numyears + " years, " +
+                numdays + " days, " +
+                numhours + " hours, " +
+                numminutes + " minutes, " +
+                numseconds + " seconds, " +
+                nummilliseconds + " milliseconds";
         };
 
         this.timeToCrack = function() {
-            if(this.passwordLength() === 0 || this.possibleCharacters === 0) {
-                return 0;
-            }
             return this.secondsToString();
         };
 
@@ -522,6 +542,7 @@ angular.module('app.controllers', [])
                     this.charChecked.lower = false;
                     this.possibleCharacters -= 26;
                 }
+                this.alerts[num].icon = "fa-times";
                 return;
             }
 
@@ -535,12 +556,15 @@ angular.module('app.controllers', [])
                     this.charChecked.lower = true;
                     this.possibleCharacters += 26;
                 }
+
+                this.alerts[num].icon = "fa-check"
             } else {
                 this.alerts[num].type = "danger";
                 if(this.charChecked.lower === true) {
                     this.charChecked.lower = false;
                     this.possibleCharacters -= 26;
                 }
+                this.alerts[num].icon = "fa-times";
             }
         };
 
@@ -553,6 +577,7 @@ angular.module('app.controllers', [])
                     this.charChecked.upper = false;
                     this.possibleCharacters -= 26;
                 }
+                this.alerts[num].icon = "fa-times";
                 return;
             }
             if(this.password !== null && this.password !== undefined) {
@@ -565,12 +590,15 @@ angular.module('app.controllers', [])
                     this.charChecked.upper = true;
                     this.possibleCharacters += 26;
                 }
+                this.alerts[num].icon = "fa-check"
+
             } else {
                 this.alerts[num].type = "danger";
                 if(this.charChecked.upper === true) {
                     this.charChecked.upper = false;
                     this.possibleCharacters -= 26;
                 }
+                this.alerts[num].icon = "fa-times";
             }
         };
 
@@ -583,6 +611,7 @@ angular.module('app.controllers', [])
                     this.charChecked.num = false;
                     this.possibleCharacters -= 10;
                 }
+                this.alerts[num].icon = "fa-times";
                 return;
             }
             if(this.password !== null && this.password !== undefined) {
@@ -595,12 +624,14 @@ angular.module('app.controllers', [])
                     this.charChecked.num = true;
                     this.possibleCharacters += 10;
                 }
+                this.alerts[num].icon = "fa-check"
             } else {
                 this.alerts[num].type = "danger";
                 if(this.charChecked.num === true) {
                     this.charChecked.num = false;
                     this.possibleCharacters -= 10;
                 }
+                this.alerts[num].icon = "fa-times";
             }
         };
 
@@ -613,6 +644,7 @@ angular.module('app.controllers', [])
                     this.charChecked.special = false;
                     this.possibleCharacters -= 33;
                 }
+                this.alerts[num].icon = "fa-times";
                 return;
             }
 
@@ -626,12 +658,14 @@ angular.module('app.controllers', [])
                     this.charChecked.special = true;
                     this.possibleCharacters += 33;
                 }
+                this.alerts[num].icon = "fa-check"
             } else {
                 this.alerts[num].type = "danger";
                 if(this.charChecked.special === true) {
                     this.charChecked.special = false;
                     this.possibleCharacters -= 33;
                 }
+                this.alerts[num].icon = "fa-times";
             }
         };
 
@@ -640,14 +674,18 @@ angular.module('app.controllers', [])
                 var passwordLower = this.password.toLowerCase();
                 var usernameLower = this.user_name.toLowerCase();
 
-                var num = 4;
+                var num = 5;
 
                 if(passwordLower.indexOf(usernameLower) > -1) {
                     this.alerts[num].type = "danger";
 
+                    this.alerts[num].icon = "fa-times";
+
                     return true;
                 } else {
                     this.alerts[num].type = "success";
+
+                    this.alerts[num].icon = "fa-check";
 
                     return false;
                 }
@@ -669,7 +707,7 @@ angular.module('app.controllers', [])
         };
 
         this.submitPassword = function() {
-            console.log('submitted');
+            this.continue();
         };
 
         this.partOneCompleted = function() {
@@ -678,46 +716,63 @@ angular.module('app.controllers', [])
         this.partTwoCompleted = function() {
             return $scope.levels[this.level].partTwoCompleted;
         };
-
-        this.continue = function() {
-            if(!this.partOneCompleted()) {
-                $scope.levels[this.level].partOneCompleted = true;
-                this.buttonLabel = "Continue";
-
-            } else if(!this.partTwoCompleted()) {
-                $scope.levels[this.level].partTwoCompleted = true;
-
-            } else if(this.partOneCompleted() && this.partTwoCompleted()) {
-
-            }
+        this.partThreeCompleted = function() {
+            return $scope.levels[this.level].partThreeCompleted;
         };
 
         this.alerts = [
             {
                 type: "danger",
-                msg: "Your password must contain at least one small letter (like 'a', 'b' or 'z')"
+                msg: "Your password must contain at least one small letter (like 'a', 'b' or 'z')",
+                icon: "fa-times"
             },
             {
                 type: "danger",
-                msg: "Your password must contain at least one capital letter (like 'A', 'B' or 'Z')"
+                msg: "Your password must contain at least one capital letter (like 'A', 'B' or 'Z')",
+                icon: "fa-times"
             },
             {
                 type: "danger",
-                msg: "Your password must contain at least one number (like '0', '1' or '9')"
+                msg: "Your password must contain at least one number (like '0', '1' or '9')",
+                icon: "fa-times"
             },
             {
                 type: "danger",
-                msg: "Your password must contain at least one special character (like '_', '%' or '@')"
+                msg: "Your password must contain at least one special character (like '_', '%' or '@')",
+                icon: "fa-times"
+            },
+            {
+                type: "danger",
+                msg: "Your password must be at least 8 characters long",
+                icon: "fa-times"
             },
             {
                 type: "success",
-                msg: "You mustn't use your name in your password"
+                msg: "You mustn't use your name in your password",
+                icon: "fa-check"
             }
         ];
 
-        this.updateAlert = function() {
+        this.hidePasswordForm = false;
 
+        this.continue = function() {
+            if(!this.partOneCompleted()) {
+                $scope.levels[this.level].partOneCompleted = true;
+                this.buttonLabel = "Continue";
+                this.continueDisabled = true;
+
+            } else if(!this.partTwoCompleted()) {
+                $scope.levels[this.level].partTwoCompleted = true;
+                this.continueDisabled = false;
+                this.hidePasswordForm = true;
+
+            } else if(!this.partThreeCompleted()) {
+                $scope.levels[this.level].partThreeCompleted = true;
+
+                $state.go('information');
+            }
         };
+
     })
 
     //Unused controllers below
