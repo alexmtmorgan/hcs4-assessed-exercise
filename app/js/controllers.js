@@ -82,9 +82,18 @@ angular.module('app.controllers', [])
     .controller('IntroductionCtrl', function($scope, $state, SharedService) {
 
         this.user_name = null;
+        this.password = null;
+        this.password_c = null;
+
+        this.passwordSubmitted = false;
+
+        this.submitPassword = function() {
+            this.passwordSubmitted = true;
+        };
 
         this.continue = function() {
             SharedService.setUsername(this.user_name);
+            SharedService.setInitialPassword(this.password);
             SharedService.setLevelCompleted(0);
             $state.go('level1');
         };

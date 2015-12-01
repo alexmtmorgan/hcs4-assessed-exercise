@@ -38,10 +38,29 @@
             <p ng-show="Intro.user_name">Nice to meet you
                 <span class="username">{{Intro.user_name}}</span>!</p>
 
+            <form name="passwordForm" ng-submit="Intro.submitPassword()"
+                  id="passwordForm" ng-if="Intro.user_name">
+                <label for=password_field>Password:</label>
+                <input id="password_field" name="password_field"
+                       type="password"
+                       ng-model="Intro.password" class="form-control"
+                       placeholder="Type password here..."/>
+
+                <label for="password_confirm">Confirm password:</label>
+                <input id="password_confirm" name="password_confirm"
+                       type="password"
+                       ng-model="Intro.password_c" class="form-control"
+                       placeholder="Confirm master password here..."/>
+
+                <br>
+                <button type="submit" id="submit" ng-disabled="Intro.passwordSubmitted"
+                        class="btn btn-success">Submit</button>
+            </form>
+
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 right-buttons">
             <button class="btn btn-default" id="continue"
-                    data-ng-disabled="!Intro.user_name"
+                    data-ng-disabled="!Intro.user_name || !Intro.passwordSubmitted"
                     ng-click="Intro.continue()">Continue</button>
         </div>
     </div>
