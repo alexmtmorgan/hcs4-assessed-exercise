@@ -85,10 +85,28 @@ angular.module('app.controllers', [])
         this.password = null;
         this.password_c = null;
 
+        this.getMessage = function() {
+            if(this.password === null || this.password_c === null) {
+                if(this.password_c === null && this.password === null) {
+                    return "";
+
+                } else {
+                    return "Passwords do not match!";
+                }
+            } else if(this.password == this.password_c) {
+                return "";
+            } else {
+                return "Passwords do not match!";
+            }
+        };
+
         this.passwordSubmitted = false;
 
         this.submitPassword = function() {
-            this.passwordSubmitted = true;
+            if(this.getMessage() == "") {
+                this.passwordSubmitted = true;
+
+            }
         };
 
         this.continue = function() {

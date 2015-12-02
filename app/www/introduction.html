@@ -53,9 +53,15 @@
                        placeholder="Confirm master password here..."/>
 
                 <br>
-                <button type="submit" id="submit" ng-disabled="Intro.passwordSubmitted"
+                <button type="submit" id="submit"
+                        ng-disabled="Intro.passwordSubmitted || Intro.password !== Intro.password_c"
                         class="btn btn-success">Submit</button>
             </form>
+
+            <div class="emphasise"
+                 ng-if="Intro.user_name">
+                <p>{{Intro.getMessage()}}</p>
+            </div>
 
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 right-buttons">
